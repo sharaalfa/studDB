@@ -22,6 +22,22 @@
         <servlet-name>List</servlet-name>
         <url-pattern>/students/list</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>Add</servlet-name>
+        <servlet-class>controllers.AddServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Add</servlet-name>
+        <url-pattern>/students/add/</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>Delete</servlet-name>
+        <servlet-class>controllers.DeleteServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Delete</servlet-name>
+        <url-pattern>/students/del/</url-pattern>
+    </servlet-mapping>
 
 
     <servlet>
@@ -30,7 +46,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>Edit</servlet-name>
-        <url-pattern>/students/edit</url-pattern>
+        <url-pattern>/students/edit/</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>Login</servlet-name>

@@ -16,14 +16,13 @@ import java.util.List;
 public class StudentDao {
     private static final Logger logger = Logger.getLogger(StudentDao.class);
 
-    private static final String SQL_GET_STUDENT = "SELECT * FROM  \"students\" WHERE id=?";
-    private static final String SQL_ALL_USERS = "SELECT * FROM  \"students\" ORDER BY id";
-    private static final String SQL_UPDATE = "UPDATE students " +
-            "SET name=?, age=? WHERE id=?";
-    private static final String SQL_DELETE = "DELETE FROM students WHERE id=?";
-    private static final String SQL_CREATE = "INSERT INTO students(name, age) " +
+    private static final String SQL_GET_STUDENT = "SELECT * FROM  student WHERE id=?";
+    private static final String SQL_ALL_USERS = "SELECT * FROM  \"student\" ORDER BY id";
+    private static final String SQL_UPDATE = "UPDATE student SET name=?, age=? WHERE id=?";
+    private static final String SQL_DELETE = "DELETE FROM student WHERE id=?";
+    private static final String SQL_CREATE = "INSERT INTO student(\"name\", age) " +
             "VALUES(?,?)";
-    private static String SQL_ALL_STUDENTS = "SELECT * FROM students";
+    private static String SQL_ALL_STUDENTS = "SELECT * FROM student";
 
     public static List<Student> getAllStudents(){
         List<Student> studentsList = new ArrayList<>();
@@ -48,7 +47,7 @@ public class StudentDao {
     }
 
 
-    public static List<Student> getList() throws UserDaoException {
+    public static List<Student> getList(){
         List<Student> list = new ArrayList<>();
         try (Connection connection = Connector.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(SQL_ALL_USERS);
@@ -67,7 +66,7 @@ public class StudentDao {
             statement.close();
         } catch (SQLException e) {
             logger.error(e);
-            throw new UserDaoException();
+            //throw new UserDaoException();
         }
 
         return list;
@@ -118,10 +117,10 @@ public class StudentDao {
         return false;
     }
 
-    public static boolean delete(long id) throws UserDaoException {
+    public static boolean delete(int id) throws UserDaoException {
         try (Connection connection = Connector.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(SQL_DELETE);
-            statement.setLong(1, id);
+            statement.setInt(1, id);
             int count = statement.executeUpdate();
 
             if (count > 0) {

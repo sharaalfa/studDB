@@ -18,7 +18,7 @@
         <input type="text" name="name" id="name">
     </div>
     <div>
-        <label for="age">middlename</label>
+        <label for="age">age</label>
         <input type="text" name="age" id="age">
     </div>
     <div>
