@@ -2,19 +2,20 @@ package services;
 
 import common.exceptions.UserDaoException;
 import models.dao.UserDao;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.web.context.WebApplicationContext;
+
+import javax.servlet.ServletConfig;
+import javax.servlet.jsp.jstl.core.Config;
+
 
 /**
  * Created by bot on 23.02.17.
  */
-public class UserService {
-    public static boolean authorize(String login, String password) throws UserDaoException {
-        if(UserDao.getUserByLoginAndPassword(login, password) != null){
-            return true;
-        }
-        return false;
-    }
 
-    public static boolean registration(String login, String password){
-        return UserDao.registrationUser(login, password);
-    }
+public interface UserService {
+    public  boolean authorize(String login, String password) throws UserDaoException;
+    public boolean registration(String login, String password);
+
 }

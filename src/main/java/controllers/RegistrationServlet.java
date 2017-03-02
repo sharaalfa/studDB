@@ -1,8 +1,14 @@
 package controllers;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
+import services.StudentService;
 import services.UserService;
 
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -12,25 +18,7 @@ import java.io.IOException;
 /**
  * Created by bot on 23.02.17.
  */
-public class RegistrationServlet extends HttpServlet {
 
-    private static Logger logger = Logger.getLogger(RegistrationServlet.class);
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/registration.jsp").forward(req, resp);
-    }
+public interface RegistrationServlet {
 
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        logger.trace("REG on post");
-        String login = req.getParameter("login");
-        String password = req.getParameter("password");
-        if(UserService.registration(login, password)){
-            logger.trace("true");
-            resp.sendRedirect("/students/login");
-        }else{
-            logger.trace("false");
-            req.getRequestDispatcher("/error.jsp").forward(req, resp);
-        }
-    }
 }
